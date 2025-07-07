@@ -1,14 +1,22 @@
-
-
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
+import { useTodo } from "./usecontext";
+import ListItem from "./listItem";
 
 const Todo = () => {
-  const [inputData, setinputData] = useState("");//define 
+  //useContext
+
+  // how to create a react component custom
+  // how to pass data/props to the custom component
+  // how to use the react component
+
+  const { settings } = useTodo();
+  const [inputData, setinputData] = useState(""); //define
   const [items, setItems] = useState([]);
   const [IsEditItem, setIsEditItem] = useState("");
   const [toggleSubmit, settoggleSubmit] = useState(false);
-  //get local storage
+
   useEffect(() => {
     getlocalstorage();
   }, []);
@@ -29,7 +37,7 @@ const Todo = () => {
       settoggleSubmit(false);
     } else {
       const newinputData = {
-        id: new Date().getTime().toString(),
+        id: items.length,
         name: inputData,
       };
       setItems([...items, newinputData]);
@@ -38,9 +46,12 @@ const Todo = () => {
   };
   //delete the item
   const deleteItem = (index) => {
+    console.log("deleted");
     const updatedItems = items.filter((curEle) => {
       return curEle.id !== index;
     });
+
+    console.log("deleted items:", updatedItems);
     setItems(updatedItems);
   };
 
@@ -61,6 +72,7 @@ const Todo = () => {
   };
   //edit item
   const editItem = (index) => {
+
     const item_todo = items.find((curEle) => {
       return curEle.id === index;
     });
@@ -68,9 +80,9 @@ const Todo = () => {
     setIsEditItem(index);
     settoggleSubmit(true);
   };
-
   return (
     <>
+      <div>App Name: {settings.appName}</div>
       <div className="main-container"></div>
       <div className="todo-container">
         <figure>
@@ -82,7 +94,7 @@ const Todo = () => {
             type="text"
             placeholder="✍️ Add Items"
             className="form-control"
-            value={inputData}// state variable (dyanamic)
+            value={inputData} // state variable (dyanamic)
             onChange={(Event) => setinputData(Event.target.value)}
           />
           {toggleSubmit ? (
@@ -91,35 +103,29 @@ const Todo = () => {
             <i className=" fa fa-solid fa-plus add-btn" onClick={Additems}></i>
           )}
         </div>
+
         <div className="todo-items">
           {items.map((curEle, index) => {
             return (
-              <div className="item" key={curEle.id}>
-                <h5>{curEle.name}</h5>
-                <div className="todo-btn">
-                  <i
-                    className=" fa fa-solid fa-edit add-btn"
-                    onClick={() => editItem(curEle.id)}
-                  ></i>
-                  <i
-                    className=" fa fa-solid fa-trash add-btn"
-                    onClick={() => deleteItem(curEle.id)}
-                  ></i>
-                </div>
-              </div>
+              <ListItem
+                key={curEle.id}
+                name={curEle.name}
+                onEdit={() => {
+                  editItem(index);
+                }}
+                onDelete={() => {
+                  deleteItem(index);
+                }}
+              />
             );
           })}
         </div>
+      </div>
 
-        <div className="todo-list">
-          <button
-            className="btn effect04"
-            data-sm-link-text="CLEAR ALL"
-            onClick={removeAll}
-          >
-            <span>CHECK LIST</span>
-          </button>
-        </div>
+      <div className="todo-footer">
+        <button className="btn" onClick={removeAll}>
+          Remove All
+        </button>
       </div>
     </>
   );

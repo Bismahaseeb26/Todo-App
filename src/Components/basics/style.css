@@ -163,3 +163,18 @@ html {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
+
+/*settings page*/
+.settings {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+.settings h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+}
