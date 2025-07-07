@@ -1,0 +1,165 @@
+/* Reset & Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body Full Center */
+body,
+html {
+  height: 100%;
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Wrapper */
+.main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Todo App Box */
+.todo-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Image & Title */
+.todo-container figure {
+  margin-bottom: 20px;
+}
+
+.todo-container img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.todo-container figcaption {
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Input Section */
+.todo-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 16px;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+/* Todo Items Section */
+.todo-items {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Button at the Bottom */
+.todo-list {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.todo-list button:hover {
+  background-color: #0056b3;
+}
+
+/* Button effect */
+.effect04 span {
+  display: inline-block;
+  transition: 0.3s ease-in-out;
+}
+
+.effect04:hover span {
+  transform: scale(1.05);
+}
+/* Effect 04 – Hover text replacement */
+.effect04 {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.effect04 span {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.effect04::after {
+  content: attr(data-sm-link-text);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  color: white;
+}
+
+/* Hide original span on hover and show ::after */
+.effect04:hover span {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.effect04:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
